@@ -8,21 +8,22 @@ namespace Sweepstakes
     public class Sweepstakes
     {
         string sweepstakesName;
-        int MaxRegistrationNumber=0;
+        ISweepstakesManager sweepstakesManager; // = new ISweepstakesManager();
+        int MaxRegistrationNumber = 0;
 
         //DictionaryBase<string sweepstakesName, int asdfasdf > sweepstakes
 
-        public Sweepstakes()
+        public Sweepstakes(string sweepstakesName, bool falseQueueTypeTrueStackType)
         {
-
+            this.sweepstakesName = sweepstakesName;
+            if (falseQueueTypeTrueStackType) { sweepstakesManager = new SweepstakesStackManager(); }
+            else { sweepstakesManager = new SweepstakesQueueManager(); }
         }
 
         public string SweepstakesName
         {
-            get => default(int);
-            set
-            {
-            }
+            get => sweepstakesName;
+            set { if (sweepstakesName == null)  sweepstakesName = value; }
         }
 
         public string PickWinner()
@@ -36,6 +37,9 @@ namespace Sweepstakes
         {
             MaxRegistrationNumber++;
             contestant.RegistrationNumber = MaxRegistrationNumber;
+
+            // Add this new contestant to the queue or stack
+
 
         }
     }
