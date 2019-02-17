@@ -7,24 +7,6 @@
       <FileName>Contestant.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Sweepstakes.UserInterface">
-    <Position X="2.5" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAEAAgAAAAAACAAAAABgAAAQAAAAAAA=</HashCode>
-      <FileName>UserInterface.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="SweepstakesQueueManager" />
-      <Property Name="SweepstakesStackManager" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="Sweepstakes.Sweepstakes">
-    <Position X="11.25" Y="3.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAIAAAAAAAAAQQAAAIEAA=</HashCode>
-      <FileName>Sweepstakes.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Sweepstakes.SweepstakesQueueManager">
     <Position X="4.75" Y="2" Width="2.5" />
     <TypeIdentifier>
@@ -39,18 +21,32 @@
       <FileName>SweepstakesStackManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Sweepstakes.ISweepstakesManager">
-    <Position X="8" Y="2.5" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAQAAAAAAA=</HashCode>
-      <FileName>ISweepstakesManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Sweepstakes.MarketingFirm">
     <Position X="12.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MarketingFirm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sweepstakes.UserInterface">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAhAAAAAACAAAAACCEAIABgACAQAAAAIIA=</HashCode>
+      <FileName>UserInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sweepstakes.Sweepstakes">
+    <Position X="8.25" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAIEAA=</HashCode>
+      <FileName>Sweepstakes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sweepstakes.ISweepstakesManager">
+    <Position X="8" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAABgAAAQAAAAAAA=</HashCode>
+      <FileName>ISweepstakesManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

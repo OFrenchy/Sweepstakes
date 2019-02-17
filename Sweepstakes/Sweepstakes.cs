@@ -1,24 +1,45 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Sweepstakes
 {
-    public class Sweepstakes
+    // I will use "ss_" and/or "_ss_" as aliases to shorten variable & method names
+    public class Sweepstakes     
     {
-        string sweepstakesName;
-        ISweepstakesManager sweepstakesManager; // = new ISweepstakesManager();
-        int MaxRegistrationNumber = 0;
+        string name;
+        string prize;
+        string detailsFinePrint;
+        DateTime startDate;
+        DateTime endDateTime;
+        DateTime drawingDateTime;
+        bool prizePhysicallyAwarded;
+        DateTime prizeTransferredDateTime;
+        Dictionary<int, Contestant> contestants;
 
-        //DictionaryBase<string sweepstakesName, int asdfasdf > sweepstakes
+        int WinningRegistrationNumber = -1;     // only gets set once
 
-        public Sweepstakes(string sweepstakesName, bool falseQueueTypeTrueStackType)
+        
+
+        public Sweepstakes(string sweepstakesName, string)
         {
-            this.sweepstakesName = sweepstakesName;
-            if (falseQueueTypeTrueStackType) { sweepstakesManager = new SweepstakesStackManager(); }
-            else { sweepstakesManager = new SweepstakesQueueManager(); }
+            this.name = sweepstakesName;
+            
+            contestants = new Dictionary<int, Contestant>();
+            //Console.WriteLine(contestants.Count);
+
         }
+
+        public Dictionary<int, Contestant> Contestants
+        {
+            get => contestants;
+        }
+            
+
+
+
 
         public string SweepstakesName
         {
