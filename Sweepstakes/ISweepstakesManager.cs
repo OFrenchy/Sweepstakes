@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace Sweepstakes
 {
-    public class ISweepstakesManager
+    public interface ISweepstakesManager
     {
-        public void InsertSweepstakes();
+        void InsertSweepstakes(Sweepstakes sweepstakes);
 
-        public Sweepstakes GetSweepstakes();
+        Sweepstakes GetSweepstakes();
 
         //public Sweepstakes RemoveSweepstakes();
     }

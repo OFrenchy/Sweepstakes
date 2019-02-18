@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
+
 namespace Sweepstakes
 {
     public class MarketingFirm
@@ -51,11 +53,35 @@ namespace Sweepstakes
 
         // Member methods
         
-            public int CreateNewSweepstakes()
+        public int CreateNewSweepstakes()
         {
+            // TODO - get new sweepstakes ID - ? from the SweepstakesQueueManager or SweepstakesStackManager
+            int newSweepstakesID = 1;
+
+            DateTime datetime;// = new Datetime();
+
+            Sweepstakes sweepstakes = new Sweepstakes
+                (
+                UserInterface.promptForStringInput("Enter sweepstakes name: "),
+                newSweepstakesID,
+                UserInterface.promptForStringInput("Enter description:"),
+                UserInterface.promptForStringInput("Enter prize:"),
+                UserInterface.promptForStringInput("Enter client company name:"),
+                DateTime.Parse(UserInterface.promptForStringInput("Enter start date in '1/1/2000' format:")),
+                DateTime.Parse(UserInterface.promptForStringInput("Enter end date & time in '1/1/2000 1:00 pm' format:")),
+                DateTime.Parse(UserInterface.promptForStringInput("Enter the scheduled drawing date & time in '1/1/2000 1:00 pm' format:")),
+                detailsFinePrint,
+                winningEmailSubject, 
+                winningEmailBodyMessage,
+                nonWinningEmailSubject, 
+                nonWinningEmailBodyMessage
+                );
 
 
 
+
+
+            return newSweepstakesID;
         }
 
 

@@ -132,6 +132,40 @@ namespace Sweepstakes
             while (isInteger == false || inputInteger < lowerBound || inputInteger > upperBound);
             return inputInteger;
         }
+        public static int promptForIntegerInput1OrGreater(string message)
+        {
+            int inputInteger = 0;
+            int lowerBound = 1;
+            bool isInteger;
+            string input;
+            do
+            {
+                isInteger = false;
+                clearScreen();
+                Console.WriteLine(message);
+                input = Console.ReadLine();
+                //bool isInteger = int.TryParse(input, inputInteger); 
+                // in order to use try/catch
+                try
+                {
+                    inputInteger = int.Parse(input);
+                    isInteger = true;
+                    if (inputInteger < lowerBound)
+                    {
+                        Console.WriteLine("That number is out of range.");
+                        Console.ReadLine();
+                    }
+                }
+                // Note:  thisException is not used, but left in for future use/debugging/improvement
+                catch (Exception thisException)
+                {
+                    Console.WriteLine("That is not a number.");
+                    //Console.WriteLine(thisException.ToString());
+                }
+            }
+            while (isInteger == false || inputInteger < lowerBound);
+            return inputInteger;
+        }
         public static double promptForNumberInput(string message, double lowerBound, double upperBound)
         {
             double inputNumber = 0;
