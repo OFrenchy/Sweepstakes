@@ -6,12 +6,27 @@ namespace Sweepstakes
 {
     public class Contestant
     {
-        int registrationNumber;
+        int registrationNumber= -1;
         string lastName;
         string firstName;
         string emailAddress;
-        bool winner = false;
-
+        
+        public Contestant(string lastName, string firstName, string emailAddress)
+        {
+            // require last, first, email
+            this.lastName = lastName;
+            this.firstName = firstName;
+            this.emailAddress = emailAddress;
+        }
+        public override string ToString()
+        {
+            return $"{lastName}, {firstName}, {emailAddress}, {registrationNumber}";
+        }
+        //public override string ToString()
+        //{
+        //    //return base.ToString();
+        //    return $"Last name = {lastName}\nFirst name = {firstName}\n Email address = {emailAddress}\nRegistration number = {registrationNumber}";
+        //}
         public string EmailAddress
         {
             get => emailAddress;
@@ -33,7 +48,7 @@ namespace Sweepstakes
         public int RegistrationNumber
         {
             get => registrationNumber;
-            set { if (registrationNumber = 0) registrationNumber = value; }
+            set { if (registrationNumber == -1) registrationNumber = value; }
         }
     }
 }

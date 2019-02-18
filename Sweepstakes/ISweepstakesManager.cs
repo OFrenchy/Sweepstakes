@@ -20,8 +20,19 @@ namespace Sweepstakes
 
                 Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
             }
+
+            Dictionary<int, Contestant>.ValueCollection valueColl =
+            openWith.Values;
+
+            foreach (Contestant contestant in thisSS.Contestants.Values)
+            {    //
+
+                UserInterface.displayMessage(, false);
+
+            }
+
         }
-        
+
 
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sweepstakes
 {
-    // I will use "ss_" and/or "_ss_" as aliases to shorten variable & method names
+    // I may use "SS", "ss_", and "_ss_" as aliases to shorten variable & method names
     public class Sweepstakes     
     {
         string name;
@@ -18,50 +18,55 @@ namespace Sweepstakes
         bool prizePhysicallyAwarded;
         DateTime prizeTransferredDateTime;
         Dictionary<int, Contestant> contestants;
+        int winningRegistrationNumber = -1;     // only gets set once
 
-        int WinningRegistrationNumber = -1;     // only gets set once
-
-        
-
-        public Sweepstakes(string sweepstakesName, string)
+        public Sweepstakes(string sweepstakesName, )
         {
             this.name = sweepstakesName;
-            
             contestants = new Dictionary<int, Contestant>();
-            //Console.WriteLine(contestants.Count);
-
         }
-
+        public void PrintContestantInfo(Contestant contestant)
+        {
+            Console.WriteLine(contestant.ToString());
+        }
+        
+        public int RegisterContestant(string lastName, string firstName, string emailAddress)
+        {
+            // get the next int from the dictionary 
+            Contestant contestant = new Contestant(lastName, firstName, emailAddress);
+            contestant.RegistrationNumber = contestants.Count + 1;
+            contestants.Add(contestant.RegistrationNumber, contestant);
+            return contestant.RegistrationNumber;
+        }
         public Dictionary<int, Contestant> Contestants
         {
             get => contestants;
         }
-            
-
-
-
-
-        public string SweepstakesName
+        
+        public string Name
         {
-            get => sweepstakesName;
-            set { if (sweepstakesName == null)  sweepstakesName = value; }
+            get => name;
+            set { if (name == null) name = value; }
         }
 
         public string PickWinner()
         {
+            if (DateTime.Now < endDateTime)
+            {
+                UserInterface.displayMessage($"The end date and time of this sweepstakes is {endDateTime.ToLongDateString()}", true);
+                return null;
+            }
             Random random = new Random();
-            int WinningTicketNumber = random.Next(1, MaxRegistrationNumber + 1);
-            Contestant winner = new Contestant();
+            winningRegistrationNumber = random.Next(1, contestants.Count + 1);
+            Contestant winner = contestants[winningRegistrationNumber];
+            drawingDateTime = DateTime.Now; //.ToLongDateString();
             return $"{winner.LastName}, {winner.FirstName}, {winner.EmailAddress}, {winner.RegistrationNumber}";
         }
-        public void RegisterContestant(Contestant contestant)
+        public int WinningRegistrationNumber
         {
-            MaxRegistrationNumber++;
-            contestant.RegistrationNumber = MaxRegistrationNumber;
-
-            // Add this new contestant to the queue or stack
-
-
+            get => winningRegistrationNumber;
         }
+        
+
     }
 }
