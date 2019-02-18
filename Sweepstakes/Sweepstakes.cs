@@ -16,7 +16,7 @@ namespace Sweepstakes
         
         DateTime startDate;
         DateTime endDateTime;
-        DateTime drawingDateTimeScheduled;
+        DateTime drawingDateTimeScheduled = DateTime.Parse("1/1/1900");
         DateTime drawingDateTimeActual = DateTime.Parse("1/1/1900");
         bool prizePhysicallyAwarded;
         DateTime prizeTransferredDateTime = DateTime.Parse("1/1/1900");
@@ -32,27 +32,29 @@ namespace Sweepstakes
 
 
         public Sweepstakes(string sweepstakesName, int sweepstakesID, string description, string prize, 
-            string clientCompanyName, DateTime startDate, DateTime endDateTime,
-            DateTime drawingDateTimeScheduled,
-            string detailsFinePrint,
-            string winningEmailSubject, string winningEmailBodyMessage, string nonWinningEmailSubject,
-            string nonWinningEmailBodyMessage)
+            DateTime startDate, DateTime endDateTime,
+            DateTime drawingDateTimeScheduled, 
+            MarketingFirm marketingFirm
+            )
+            //,
+            //string clientCompanyName, string detailsFinePrint,
+            //string winningEmailSubject, string winningEmailBodyMessage, string nonWinningEmailSubject,
+            //string nonWinningEmailBodyMessage)
         {
             this.sweepstakesName = sweepstakesName;
             this.sweepstakesID = sweepstakesID;
             this.description = description;
             this.prize = prize;
-            this.clientCompanyName = clientCompanyName;
+            this.clientCompanyName = marketingFirm.ClientCompanyName;
             this.startDate = startDate;
             this.endDateTime = endDateTime;
             this.drawingDateTimeScheduled = drawingDateTimeScheduled;
-            this.detailsFinePrint = detailsFinePrint;
-            this.winningEmailSubject = winningEmailSubject;
-            this.winningEmailBodyMessage = winningEmailBodyMessage;
-            this.nonWinningEmailSubject = nonWinningEmailSubject;
-            this.nonWinningEmailBodyMessage = nonWinningEmailBodyMessage;
-
-
+            this.detailsFinePrint = marketingFirm.DetailsFinePrint;
+            this.winningEmailSubject = marketingFirm.WinningEmailSubject;
+            this.winningEmailBodyMessage = marketingFirm.WinningEmailBodyMessage;
+            this.nonWinningEmailSubject = marketingFirm.NonWinningEmailSubject;
+            this.nonWinningEmailBodyMessage = marketingFirm.NonWinningEmailBodyMessage;
+            
             contestants = new Dictionary<int, Contestant>();
         }
         public void PrintContestantInfo(Contestant contestant)

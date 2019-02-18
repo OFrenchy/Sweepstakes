@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 
 
-
 namespace Sweepstakes
 {
     public class MarketingFirm
     {
         // Member variables
-        ISweepstakesManager SSManager;
+        ISweepstakesManager sweepstakesManager;
 
         string marketingCompanyName = "Wil-E-Coyote, Inc.";
         string marketingCompanyTelephoneNumber = "(123) 456-7890";
@@ -37,31 +36,23 @@ namespace Sweepstakes
             "was randomly picked at {drawingDateTimeActual}\n\n" +
             "{clientCompanyName} would like to thank you for playing!  We hope you win next time!";
 
-
         // Constructor
         public MarketingFirm()
         {
             if (UserInterface.showWelcomeScreenGetManagementSelection() == "y")
             {
-                SSManager = new SweepstakesStackManager();
+                sweepstakesManager = new SweepstakesStackManager();
             }
-            else SSManager = new SweepstakesQueueManager();
-
-
-
+            else sweepstakesManager = new SweepstakesQueueManager();
         }
 
         // Member methods
         
         public int CreateNewSweepstakes()
         {
-            // TODO - get new sweepstakes ID - ? from the SweepstakesQueueManager or SweepstakesStackManager
-            int newSweepstakesID = 1;
-
-            DateTime datetime;// = new Datetime();
-
-            Sweepstakes sweepstakes = new Sweepstakes
-                (
+            int newSweepstakesID = sweepstakesManager.Count + 1;
+            
+            Sweepstakes sweepstakes = new Sweepstakes (
                 UserInterface.promptForStringInput("Enter sweepstakes name: "),
                 newSweepstakesID,
                 UserInterface.promptForStringInput("Enter description:"),
@@ -75,19 +66,40 @@ namespace Sweepstakes
                 winningEmailBodyMessage,
                 nonWinningEmailSubject, 
                 nonWinningEmailBodyMessage
-                );
-
-
-
-
-
+            );
+            sweepstakesManager.InsertSweepstakes(sweepstakes);
             return newSweepstakesID;
         }
-
-
-
-
-
+        public string ClientCompanyName { get => clientCompanyName; }
+        public string DetailsFinePrint
+        {
+            get => detailsFinePrint;
+            set => detailsFinePrint = value;
+        }
+        public string WinningEmailSubject
+        {
+            get => winningEmailSubject;
+            set => winningEmailSubject = value;
+        }
+        public string WinningEmailBodyMessage
+        {
+            get => winningEmailBodyMessage;
+            set => winningEmailBodyMessage = value;
+        }
+        public string NonWinningEmailSubject
+        {
+            get => nonWinningEmailSubject;
+            set => nonWinningEmailSubject = value;
+        }
+        public string NonWinningEmailBodyMessage
+        {
+            get => nonWinningEmailBodyMessage;
+            set => nonWinningEmailBodyMessage = value;
+        }
+        public ISweepstakesManager SweepstakesManager
+        {
+            get => sweepstakesManager;
+        }
 
         public void ContactContestants(Sweepstakes thisSS)
         {
@@ -138,7 +150,5 @@ namespace Sweepstakes
             //stringBuilder.Append("\n");
             return stringBuilder.ToString();
         }
-
-
     }
 }

@@ -8,23 +8,31 @@ namespace Sweepstakes
 {
     public class SweepstakesQueueManager : ISweepstakesManager
     {
+        Queue queue;
         public SweepstakesQueueManager()
         {
             // create queue
-
+            queue = new Queue();
         }
 
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
-
+            queue.Enqueue(sweepstakes);
         }
-        public Sweepstakes GetSweepstakes()
+        public Sweepstakes GetSweepstakes(int sweepstakesID)
         {
-            Sweepstakes sweepstakesFound = new Sweepstakes("", 1, "", "", "",
-                 DateTime.Parse("1/1/2010"), DateTime.Parse("1/1/2010"), DateTime.Parse("1/1/2010"),
-                 "", "", "", "", "");
-
-            return sweepstakesFound;
+            foreach (Sweepstakes sweepstakes in queue)
+            {
+                if (sweepstakes.SweepstakesID.Equals(sweepstakesID))
+                {
+                    return sweepstakes;
+                }
+            }
+            return null;
+        }
+        public int Count
+        {
+            get => queue.Count;
         }
     }
 }

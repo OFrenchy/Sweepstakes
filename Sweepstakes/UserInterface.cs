@@ -6,6 +6,28 @@ namespace Sweepstakes
 {
     public static class UserInterface
     {
+        public static Sweepstakes startupMarketingFirmCreateNewSweepstakes(MarketingFirm marketingFirm)
+        {
+            Console.WriteLine(marketingFirm.DetailsFinePrint);
+            Sweepstakes sweepstakes = new Sweepstakes
+                (
+                    "Spring Green Contest",
+                    1,
+                    "Your chance to win $1000",
+                    "$1000",
+                    marketingFirm.ClientCompanyName, 
+                    DateTime.Parse("2/1/2019"),
+                    DateTime.Parse("2/17/2019 11:59 pm"),
+                    DateTime.Parse("2/18/2019 9:00 am"),
+                    marketingFirm.DetailsFinePrint,
+                    marketingFirm.WinningEmailSubject,
+                    marketingFirm.WinningEmailBodyMessage,
+                    marketingFirm.NonWinningEmailSubject,
+                    marketingFirm.NonWinningEmailBodyMessage
+                );
+            return sweepstakes;
+        }
+
         public static int grandPrize
         {
             get => default(int);
@@ -45,11 +67,8 @@ namespace Sweepstakes
             welcomeScreen = "\nWelcome to your Sweepstakes Management System!\n\n" +
                 "Would you like to use Stack managment or Queue managment?\n" +
                 "Enter Yes for Stack or No for Queue:";
-
             return promptForYesNoInput(welcomeScreen);
-
         }
-
 
         public static int pickWholeNumberOneThrough(int upperBound, string message, bool isRandom)
         {

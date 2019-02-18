@@ -22,24 +22,27 @@ namespace Sweepstakes
             
             MarketingFirm marketingFirm = new MarketingFirm();
 
-            stringReader = new StringReader("Spring Green Contest"); // name
-            Console.SetIn(stringReader);
-            stringReader = new StringReader("Your chance to win $1000"); // description
-            Console.SetIn(stringReader);
-            stringReader = new StringReader("$1000");   // prize
-            Console.SetIn(stringReader);
-            stringReader = new StringReader("Acme, Inc.");  // client company
-            Console.SetIn(stringReader);
-            stringReader = new StringReader("2/1/2019"); // start date
-            Console.SetIn(stringReader);
-            stringReader = new StringReader("2/17/2019 11:59 pm"); // end date/time
-            Console.SetIn(stringReader);
-            stringReader = new StringReader("2/18/2019 8:00 am"); // end date/time
-            Console.SetIn(stringReader);
+            //Sweepstakes sweepstakes = UserInterface.startupMarketingFirmCreateNewSweepstakes(marketingFirm);
+            int newSweepstakesID = marketingFirm.CreateNewSweepstakes();
+            Sweepstakes sweepstakes = marketingFirm.SweepstakesManager.GetSweepstakes(newSweepstakesID);
 
-            marketingFirm.CreateNewSweepstakes();
+            // Add contestants
+            sweepstakes.RegisterContestant("Tester", "Lester", "LT@Tester.com");
+            sweepstakes.RegisterContestant("Tester", "Chester", "CT@Tester.com");
+            sweepstakes.RegisterContestant("Tester", "Nester", "NT@Tester.com");
+            sweepstakes.RegisterContestant("Tester", "Fester", "FT@Tester.com");
 
-            
+            Console.WriteLine(sweepstakes.Contestants[1].FirstName + sweepstakes.Contestants[1].RegistrationNumber);
+            Console.WriteLine(sweepstakes.Contestants[2].FirstName + sweepstakes.Contestants[2].RegistrationNumber);
+            Console.WriteLine(sweepstakes.Contestants[3].FirstName + sweepstakes.Contestants[3].RegistrationNumber);
+            Console.WriteLine(sweepstakes.Contestants[4].FirstName + sweepstakes.Contestants[4].RegistrationNumber);
+
+            Contestant contestant = sweepstakes.Contestants[2];
+            sweepstakes.PrintContestantInfo(contestant);
+
+
+
+
             // launch user interface?
 
 

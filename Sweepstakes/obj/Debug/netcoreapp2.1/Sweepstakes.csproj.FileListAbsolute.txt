@@ -1,0 +1,11 @@
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\bin\Debug\netcoreapp2.1\Sweepstakes.deps.json
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\bin\Debug\netcoreapp2.1\Sweepstakes.runtimeconfig.json
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\bin\Debug\netcoreapp2.1\Sweepstakes.runtimeconfig.dev.json
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\bin\Debug\netcoreapp2.1\Sweepstakes.dll
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\bin\Debug\netcoreapp2.1\Sweepstakes.pdb
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\obj\Debug\netcoreapp2.1\Sweepstakes.csprojAssemblyReference.cache
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\obj\Debug\netcoreapp2.1\Sweepstakes.csproj.CoreCompileInputs.cache
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\obj\Debug\netcoreapp2.1\Sweepstakes.AssemblyInfoInputs.cache
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\obj\Debug\netcoreapp2.1\Sweepstakes.AssemblyInfo.cs
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\obj\Debug\netcoreapp2.1\Sweepstakes.dll
+\\Mac\Home\Documents\devCodeCamp\Assignments\Wk_06_Day_5_Sweepstakes\Sweepstakes\Sweepstakes\obj\Debug\netcoreapp2.1\Sweepstakes.pdb

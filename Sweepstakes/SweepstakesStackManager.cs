@@ -8,23 +8,40 @@ namespace Sweepstakes
 {
     public class SweepstakesStackManager : ISweepstakesManager
     {
+        Stack stack;
+
         public SweepstakesStackManager()
         {
             // create stack
-
+            stack = new Stack();
         }
 
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
-
+            try { stack.Push(sweepstakes); }
+            catch (Exception thisException)
+            {
+                string exceptionMessage = thisException.ToString();
+                if (thisException.Equals(new StackOverflowException()))
+                {
+                    UserInterface.displayMessage("The stack of sweepstakes is full - you must remove one or more before you can add another.", true);
+                }
+            }
         }
-        public Sweepstakes GetSweepstakes()
+        public Sweepstakes GetSweepstakes(int sweepstakesID)
         {
-            Sweepstakes sweepstakesFound = new Sweepstakes("", 1, "", "", "",
-                 DateTime.Parse("1/1/2010"), DateTime.Parse("1/1/2010"), DateTime.Parse("1/1/2010"),
-                 "", "", "", "", "");
-
-            return sweepstakesFound;
+            foreach (Sweepstakes sweepstakes in stack)
+            {
+                if (sweepstakes.SweepstakesID.Equals(sweepstakesID))
+                {
+                    return sweepstakes;
+                }
+            }
+            return null;
+        }
+        public int Count
+        {
+            get => stack.Count;
         }
     }
 }
