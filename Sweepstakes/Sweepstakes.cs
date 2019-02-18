@@ -9,13 +9,11 @@ namespace Sweepstakes
     // I may use "SS", "ss_", and "_ss_" as aliases to shorten variable & method names
     public class Sweepstakes     
     {
-        string clientCompanyName;
-        string ss_ID;
-        string ss_Name;
+        int sweepstakesID;
+        string sweepstakesName;
         string description;
         string prize;
-        string detailsFinePrint;
-
+        
         DateTime startDate;
         DateTime endDateTime;
         DateTime drawingDateTimeScheduled;
@@ -25,16 +23,36 @@ namespace Sweepstakes
         Dictionary<int, Contestant> contestants;
         int winningRegistrationNumber = -1;     // only gets set once
 
-        //string winningEmailSubject;
-        //string winningEmailBodyMessage;
-        //string nonWinningEmailSubject;
-        //string nonWinningEmailBodyMessage;
+        string clientCompanyName;
+        string detailsFinePrint;
+        string winningEmailSubject;
+        string winningEmailBodyMessage;
+        string nonWinningEmailSubject;
+        string nonWinningEmailBodyMessage;
 
 
-
-        public Sweepstakes(string sweepstakesName)//, all other data req'd for new SS )
+        public Sweepstakes(string sweepstakesName, int sweepstakesID, string description, string prize, 
+            string clientCompanyName, DateTime startDate, DateTime endDateTime,
+            DateTime drawingDateTimeScheduled,
+            string detailsFinePrint,
+            string winningEmailSubject, string winningEmailBodyMessage, string nonWinningEmailSubject,
+            string nonWinningEmailBodyMessage)
         {
-            this.ss_Name = sweepstakesName;
+            this.sweepstakesName = sweepstakesName;
+            this.sweepstakesID = sweepstakesID;
+            this.description = description;
+            this.prize = prize;
+            this.clientCompanyName = clientCompanyName;
+            this.startDate = startDate;
+            this.endDateTime = endDateTime;
+            this.drawingDateTimeScheduled = drawingDateTimeScheduled;
+            this.detailsFinePrint = detailsFinePrint;
+            this.winningEmailSubject = winningEmailSubject;
+            this.winningEmailBodyMessage = winningEmailBodyMessage;
+            this.nonWinningEmailSubject = nonWinningEmailSubject;
+            this.nonWinningEmailBodyMessage = nonWinningEmailBodyMessage;
+
+
             contestants = new Dictionary<int, Contestant>();
         }
         public void PrintContestantInfo(Contestant contestant)
@@ -54,9 +72,6 @@ namespace Sweepstakes
         {
             get => contestants;
         }
-        
-        
-
         public string PickWinner()
         {
             if (DateTime.Now < endDateTime || DateTime.Now < drawingDateTimeScheduled)
@@ -70,16 +85,16 @@ namespace Sweepstakes
             Contestant winner = contestants[winningRegistrationNumber];
             return $"{winner.LastName}, {winner.FirstName}, {winner.EmailAddress}, {winner.RegistrationNumber}";
         }
-        public string Ss_Name
+        public string SweepstakesName
         {
-            get => ss_Name;
-            set { if (ss_Name == null) ss_Name = value; }
+            get => sweepstakesName;
+            set { if (sweepstakesName == null) sweepstakesName = value; }
         }public int WinningRegistrationNumber
         {
             get => winningRegistrationNumber;
         }
         public string ClientCompanyName { get; }
-        public string Ss_ID { get; }
+        public string SweepstakesID { get; }
         public string Description { get; }
         public string Prize { get; }
         //public string detailsFinePrint;
