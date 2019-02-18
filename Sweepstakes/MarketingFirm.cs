@@ -23,16 +23,16 @@ namespace Sweepstakes
             "The drawing will be held on {drawingDateTimeScheduled}. " +
             "The winning number is not transferrable.";
         string winningEmailSubject = "Congratulations on your {clientCompanyName} {ss_Name} Sweepstakes Entry";
-        string winningEmailBodyMessage = "Congratulations to {FirstName} {LastName}!\n  " +
+        string winningEmailBodyMessage = "Congratulations to {FirstName} {LastName}!\n" +
             "You are the winner of the {prize} " +
-            "in the {clientCompanyName} {ss_Name} Sweepstakes!\n " +
-            "Your ticket number {registrationNumber} was picked to win!\n  " +
+            "in the {clientCompanyName} {ss_Name} Sweepstakes!\n" +
+            "Your ticket number {registrationNumber} was picked to win!\n" +
             "Please contact {marketingCompanyName} at {marketingCompanyTelephoneNumber} to discuss the details.  \n\n" +
             "Once again, congratulations!";
         string nonWinningEmailSubject = "Your {clientCompanyName} {ss_Name} Sweepstakes Entry";
         string nonWinningEmailBodyMessage = "Unfortunately, {FirstName} {LastName} did not win " +
-            "in the {clientCompanyName} {ss_Name} Sweepstakes.\n  " +
-            "Your ticket number was {registrationNumber}.  The winning ticket, number {winningRegistrationNumber},\n " +
+            "in the {clientCompanyName} {ss_Name} Sweepstakes.\n" +
+            "Your ticket number was {registrationNumber}.  The winning ticket, number {winningRegistrationNumber},\n" +
             "was randomly picked at {drawingDateTimeActual}\n\n" +
             "{clientCompanyName} would like to thank you for playing!  We hope you win next time!";
 
@@ -57,14 +57,14 @@ namespace Sweepstakes
                 newSweepstakesID,
                 UserInterface.promptForStringInput("Enter description:"),
                 UserInterface.promptForStringInput("Enter prize:"),
-                UserInterface.promptForStringInput("Enter client company name:"),
                 DateTime.Parse(UserInterface.promptForStringInput("Enter start date in '1/1/2000' format:")),
                 DateTime.Parse(UserInterface.promptForStringInput("Enter end date & time in '1/1/2000 1:00 pm' format:")),
                 DateTime.Parse(UserInterface.promptForStringInput("Enter the scheduled drawing date & time in '1/1/2000 1:00 pm' format:")),
+                UserInterface.promptForStringInput("Enter client company name:"),
                 detailsFinePrint,
-                winningEmailSubject, 
+                winningEmailSubject,
                 winningEmailBodyMessage,
-                nonWinningEmailSubject, 
+                nonWinningEmailSubject,
                 nonWinningEmailBodyMessage
             );
             sweepstakesManager.InsertSweepstakes(sweepstakes);
@@ -109,11 +109,11 @@ namespace Sweepstakes
                 if (contestant.RegistrationNumber != thisSS.WinningRegistrationNumber)
                 {
                     string thisMessageSubject = ReplaceFields(thisSS.NonWinningEmailSubject, contestant, thisSS);
-                    string thisMessageBody = ReplaceFields(thisSS.NonWinningEmailSubject, contestant, thisSS);
+                    string thisMessageBody = ReplaceFields(thisSS.NonWinningEmailBodyMessage, contestant, thisSS);
                     string messageForConsoleWrite =
-                        "=================================================\nSubject:  \n" +
+                        "\n=================================================\nSubject:  \n" +
                         thisMessageSubject +
-                        "=================================================\nBody:  \n" +
+                        "\n=================================================\nBody:  \n" +
                         thisMessageBody;
                     UserInterface.displayMessage(messageForConsoleWrite, false);
                 }
@@ -122,9 +122,9 @@ namespace Sweepstakes
                     string thisMessageSubject = ReplaceFields(thisSS.WinningEmailSubject, contestant, thisSS);
                     string thisMessageBody = ReplaceFields(thisSS.WinningEmailBodyMessage, contestant, thisSS);
                     string messageForConsoleWrite =
-                        "=================================================\nSubject:  \n" +
+                        "\n=================================================\nSubject:  \n" +
                         thisMessageSubject +
-                        "=================================================\nBody:  \n" +
+                        "\n=================================================\nBody:  \n" +
                         thisMessageBody;
                     UserInterface.displayMessage(messageForConsoleWrite.ToString(), false);
                 }
@@ -140,6 +140,8 @@ namespace Sweepstakes
             stringBuilder.Replace("{startDate}", thisSS.StartDate.ToShortDateString());
             stringBuilder.Replace("{endDateTime}", thisSS.EndDateTime.ToShortDateString());
             stringBuilder.Replace("{drawingDateTimeScheduled}", thisSS.DrawingDateTimeScheduled.ToShortDateString());
+            stringBuilder.Replace("{drawingDateTimeActual}", thisSS.DrawingDateTimeActual.ToShortDateString() + " " + thisSS.DrawingDateTimeActual.ToShortTimeString());
+
             stringBuilder.Replace("{ss_Name}", thisSS.SweepstakesName);
             stringBuilder.Replace("{FirstName}", contestant.FirstName);
             stringBuilder.Replace("{LastName}", contestant.LastName);

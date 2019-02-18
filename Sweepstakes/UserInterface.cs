@@ -8,26 +8,43 @@ namespace Sweepstakes
     {
         public static Sweepstakes startupMarketingFirmCreateNewSweepstakes(MarketingFirm marketingFirm)
         {
-            Console.WriteLine(marketingFirm.DetailsFinePrint);
+            int newSweepstakesID = marketingFirm.SweepstakesManager.Count + 1;
             Sweepstakes sweepstakes = new Sweepstakes
                 (
-                    "Spring Green Contest",
-                    1,
+                    "Spring Green Contest -" + newSweepstakesID.ToString(),
+                    newSweepstakesID,
                     "Your chance to win $1000",
-                    "$1000",
-                    marketingFirm.ClientCompanyName, 
+                    "$1000" ,
                     DateTime.Parse("2/1/2019"),
                     DateTime.Parse("2/17/2019 11:59 pm"),
                     DateTime.Parse("2/18/2019 9:00 am"),
+                    marketingFirm.ClientCompanyName, 
                     marketingFirm.DetailsFinePrint,
                     marketingFirm.WinningEmailSubject,
                     marketingFirm.WinningEmailBodyMessage,
                     marketingFirm.NonWinningEmailSubject,
                     marketingFirm.NonWinningEmailBodyMessage
                 );
+            marketingFirm.SweepstakesManager.InsertSweepstakes(sweepstakes);
             return sweepstakes;
         }
 
+        //public Sweepstakes GetAllInfoForAllFieldsForNewSS()
+        //{
+        //    displayMessage("The default for the sweepstakes name is 'Spring Green Contest'", false);
+        //    string ssName = promptForStringInput("Do you want to accept the default? Enter y for yes, n for no:");
+        //    if (ssName == "y") { ssName = "Spring Green Contest"; }
+        //    else ssName = promptForStringInput("Enter a new value for the sweepstakes name");
+
+        //    int newSweepstakesID = sweepstakesManager.Count + 1
+
+
+
+        //    // repeat for all variables for a new SS???
+
+
+        //    return ss;
+        //}
         public static int grandPrize
         {
             get => default(int);

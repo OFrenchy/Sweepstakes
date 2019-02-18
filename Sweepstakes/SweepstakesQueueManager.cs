@@ -23,7 +23,7 @@ namespace Sweepstakes
         {
             foreach (Sweepstakes sweepstakes in queue)
             {
-                if (sweepstakes.SweepstakesID.Equals(sweepstakesID))
+                if (sweepstakes.SweepstakesID == sweepstakesID)
                 {
                     return sweepstakes;
                 }

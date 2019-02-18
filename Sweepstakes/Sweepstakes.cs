@@ -34,26 +34,23 @@ namespace Sweepstakes
         public Sweepstakes(string sweepstakesName, int sweepstakesID, string description, string prize, 
             DateTime startDate, DateTime endDateTime,
             DateTime drawingDateTimeScheduled, 
-            MarketingFirm marketingFirm
-            )
-            //,
-            //string clientCompanyName, string detailsFinePrint,
-            //string winningEmailSubject, string winningEmailBodyMessage, string nonWinningEmailSubject,
-            //string nonWinningEmailBodyMessage)
+            string clientCompanyName, string detailsFinePrint,
+            string winningEmailSubject, string winningEmailBodyMessage, string nonWinningEmailSubject,
+            string nonWinningEmailBodyMessage)
         {
             this.sweepstakesName = sweepstakesName;
             this.sweepstakesID = sweepstakesID;
             this.description = description;
             this.prize = prize;
-            this.clientCompanyName = marketingFirm.ClientCompanyName;
+            this.clientCompanyName = clientCompanyName;
             this.startDate = startDate;
             this.endDateTime = endDateTime;
             this.drawingDateTimeScheduled = drawingDateTimeScheduled;
-            this.detailsFinePrint = marketingFirm.DetailsFinePrint;
-            this.winningEmailSubject = marketingFirm.WinningEmailSubject;
-            this.winningEmailBodyMessage = marketingFirm.WinningEmailBodyMessage;
-            this.nonWinningEmailSubject = marketingFirm.NonWinningEmailSubject;
-            this.nonWinningEmailBodyMessage = marketingFirm.NonWinningEmailBodyMessage;
+            this.detailsFinePrint = detailsFinePrint;
+            this.winningEmailSubject = winningEmailSubject;
+            this.winningEmailBodyMessage = winningEmailBodyMessage;
+            this.nonWinningEmailSubject = nonWinningEmailSubject;
+            this.nonWinningEmailBodyMessage = nonWinningEmailBodyMessage;
             
             contestants = new Dictionary<int, Contestant>();
         }
@@ -95,15 +92,16 @@ namespace Sweepstakes
         {
             get => winningRegistrationNumber;
         }
-        public string ClientCompanyName { get; }
-        public string SweepstakesID { get; }
-        public string Description { get; }
-        public string Prize { get; }
+        public string ClientCompanyName { get { return clientCompanyName; }}
+        public int SweepstakesID { get { return sweepstakesID; } }
+        
+        public string Description { get { return description; } } 
+        public string Prize { get { return prize; } }
         //public string detailsFinePrint;
 
-        public DateTime StartDate { get; }
-        public DateTime EndDateTime { get; }
-        public DateTime DrawingDateTimeScheduled { get; }
+        public DateTime StartDate { get { return startDate; } }
+        public DateTime EndDateTime { get { return endDateTime; } }
+        public DateTime DrawingDateTimeScheduled { get { return drawingDateTimeScheduled; } }
         public DateTime DrawingDateTimeActual
         {
             get => drawingDateTimeActual;
@@ -119,10 +117,26 @@ namespace Sweepstakes
             get => prizeTransferredDateTime;
             set { if (prizeTransferredDateTime.ToShortDateString() == "1/1/1900") prizeTransferredDateTime = value; }
         }
-        public string WinningEmailSubject { get; set; }
-        public string WinningEmailBodyMessage { get; set; }
-        public string NonWinningEmailSubject { get; set; }
-        public string NonWinningEmailBodyMessage { get; set; }
+        public string WinningEmailSubject  // { get { return endDateTime; } }
+        {
+            get { return winningEmailSubject; }
+            set { winningEmailSubject = value; }
+        }
+        public string WinningEmailBodyMessage
+        {
+            get { return winningEmailBodyMessage; }
+            set { winningEmailBodyMessage = value; }
+        }
+        public string NonWinningEmailSubject
+        {
+            get { return nonWinningEmailSubject; }
+            set { nonWinningEmailSubject = value; }
+        }
+        public string NonWinningEmailBodyMessage
+        {
+            get { return nonWinningEmailBodyMessage; }
+            set { nonWinningEmailBodyMessage = value; }
+        }
 
 
 
