@@ -138,7 +138,5 @@ namespace Sweepstakes
             set { nonWinningEmailBodyMessage = value; }
         }
 
-
-
     }
 }

@@ -11,6 +11,7 @@ namespace Sweepstakes
     {
         // Member variables
         ISweepstakesManager sweepstakesManager;
+        bool queueFalseStackTrue;
 
         string marketingCompanyName = "Wil-E-Coyote, Inc.";
         string marketingCompanyTelephoneNumber = "(123) 456-7890";
@@ -42,8 +43,13 @@ namespace Sweepstakes
             if (UserInterface.showWelcomeScreenGetManagementSelection() == "y")
             {
                 sweepstakesManager = new SweepstakesStackManager();
+                queueFalseStackTrue = true;
             }
-            else sweepstakesManager = new SweepstakesQueueManager();
+            else
+            {
+                sweepstakesManager = new SweepstakesQueueManager();
+                queueFalseStackTrue = false;
+            }
         }
 
         // Member methods
@@ -51,7 +57,7 @@ namespace Sweepstakes
         public int CreateNewSweepstakes()
         {
             int newSweepstakesID = sweepstakesManager.Count + 1;
-            
+
             Sweepstakes sweepstakes = new Sweepstakes (
                 UserInterface.promptForStringInput("Enter sweepstakes name: "),
                 newSweepstakesID,

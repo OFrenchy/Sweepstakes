@@ -11,7 +11,7 @@ namespace Sweepstakes
             int newSweepstakesID = marketingFirm.SweepstakesManager.Count + 1;
             Sweepstakes sweepstakes = new Sweepstakes
                 (
-                    "Spring Green Contest -" + newSweepstakesID.ToString(),
+                    "Spring Green Contest #" + newSweepstakesID.ToString(),
                     newSweepstakesID,
                     "Your chance to win $1000",
                     "$1000" ,
@@ -45,37 +45,7 @@ namespace Sweepstakes
 
         //    return ss;
         //}
-        public static int grandPrize
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
-
-        public static int sweepStakesDescription
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
-
-        public static int sweepstakesName
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
-
         
-
-        public static Contestant NewContestant()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public static string showWelcomeScreenGetManagementSelection()
         {
             clearScreen();

@@ -8,7 +8,7 @@ namespace Sweepstakes
 {
     public class SweepstakesStackManager : ISweepstakesManager
     {
-        Stack stack;
+        protected Stack stack;
 
         public SweepstakesStackManager()
         {
@@ -39,9 +39,7 @@ namespace Sweepstakes
             }
             return null;
         }
-        public int Count
-        {
-            get => stack.Count;
-        }
+        public int Count { get { return stack.Count; } }
+
     }
 }

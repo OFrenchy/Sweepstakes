@@ -13,8 +13,11 @@ namespace Sweepstakes
 
         void InsertSweepstakes(Sweepstakes sweepstakes);
 
+        int Count { get; }
+
         //public Sweepstakes RemoveSweepstakes();
 
-        int Count { get; }
+        //SweepstakesStackManager SweepstakesStackManager { get; set; }
+        //SweepstakesQueueManager SweepstakesQueueManager { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Sweepstakes
 {
     public class SweepstakesQueueManager : ISweepstakesManager
     {
-        Queue queue;
+        protected Queue queue;
         public SweepstakesQueueManager()
         {
             // create queue
@@ -30,9 +30,8 @@ namespace Sweepstakes
             }
             return null;
         }
-        public int Count
-        {
-            get => queue.Count;
-        }
+
+        public int Count { get { return queue.Count; } }
+
     }
 }
