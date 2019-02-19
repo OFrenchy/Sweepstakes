@@ -25,12 +25,9 @@ using System.Text;
 //(10 points)X As a developer, I want to implement dependency injection in my MarketingFirm class so that I can utilize a sweepstakes manager.
 //(10 points)X As a developer, I want to use the factory design pattern to allow a user to choose between a SweepstakesStackManager or a SweepstakesQueueManager to manage the sweepstakes objects.
 
-
 //Bonus Points:
 //(5 points)?MAYBE? As a developer, I want to use the observer design pattern to notify all users of the winning contestant, with the winner of the sweepstakes getting a different message specifically congratulating them on being the winner.
 //(5 points) As a developer, I want to send an actual email to a sweepstakes winner using an MailKit API https://github.com/jstedfast/MailKit
-
-
 
 namespace Sweepstakes
 {

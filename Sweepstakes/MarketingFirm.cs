@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+
 
 namespace Sweepstakes
 {
@@ -122,19 +126,81 @@ namespace Sweepstakes
                         "\n=================================================\nBody:  \n" +
                         thisMessageBody;
                     UserInterface.displayMessage(messageForConsoleWrite, false);
+
+                    //======================================================================================================
+                    // This code adapted from https://github.com/jstedfast/MailKit
+                    // MailKit is Copyright (C) 2013-2019 Xamarin Inc. and is licensed under the MIT license:
+                    //Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/ or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+                    //THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+                    var message = new MimeMessage();
+                    message.From.Add(new MailboxAddress("DB Cooper", "DeanBourgeois@wi.rr.com"));
+                    message.To.Add(new MailboxAddress(contestant.FirstName + " " + contestant.LastName, "DeanBourgeois@wi.rr.com"));
+                    message.Subject = thisMessageSubject;
+                    message.Body = new TextPart("plain")
+                    { Text = thisMessageBody  };
+                    // TODO - when time permits, move this (except the send line) to the prior to the foreach, 
+                    //  and move the disconnect to after the foreach
+                    //  so it doesn't have to authenticate, connect, & disconnect for each message
+                    using (var client = new SmtpClient())
+                    {
+                        // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
+                        client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                        client.Connect("mail.twc.com", 587, false);
+
+                        // Note: only needed if the SMTP server requires authentication
+                        // "emailAddressPrefix", "pwd"
+                        client.Authenticate("", "");
+
+                        client.Send(message);
+                        client.Disconnect(true);
+                    }
+                    //======================================================================================================
+
                 }
                 else
                 {
                     string thisMessageSubject = ReplaceFields(thisSS.WinningEmailSubject, contestant, thisSS);
                     string thisMessageBody = ReplaceFields(thisSS.WinningEmailBodyMessage, contestant, thisSS);
                     string messageForConsoleWrite =
-                        "\n=================================================\nSubject:  \n" +
+                        "\n =================================================\nSubject:  \n" +
                         thisMessageSubject +
                         "\n=================================================\nBody:  \n" +
                         thisMessageBody;
                     UserInterface.displayMessage(messageForConsoleWrite.ToString(), false);
-                }
-            }
+
+                    //======================================================================================================
+                    // This code adapted from https://github.com/jstedfast/MailKit
+                    // MailKit is Copyright (C) 2013-2019 Xamarin Inc. and is licensed under the MIT license:
+                    //Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/ or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+                    //THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+                    var message = new MimeMessage();
+                    message.From.Add(new MailboxAddress("DB Cooper", "DeanBourgeois@wi.rr.com"));
+                    message.To.Add(new MailboxAddress(contestant.FirstName + " " + contestant.LastName, "DeanBourgeois@wi.rr.com"));
+                    message.Subject = thisMessageSubject;
+                    message.Body = new TextPart("plain")
+                    { Text = thisMessageBody };
+                    // TODO - when time permits, move this (except the send line) to the prior to the foreach, 
+                    //  and move the disconnect to after the foreach
+                    //  so it doesn't have to authenticate, connect, & disconnect for each message
+                    using (var client = new SmtpClient())
+                    {
+                        // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
+                        client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                        client.Connect("mail.twc.com", 587, false);
+
+                        // Note: only needed if the SMTP server requires authentication
+                        // "emailAddressPrefix", "pwd"
+                        client.Authenticate("", "");
+                        client.Send(message);
+                        client.Disconnect(true);
+                    }
+                    //======================================================================================================
+
+                }//else
+            }//foreach
+            //client.Disconnect(true);
         }
         private string ReplaceFields(string stringToReplaceFields, Contestant contestant, Sweepstakes thisSS)
         {
